@@ -7,7 +7,7 @@ function BookList(props) {
     for (let i=0; i<Object.keys(props.result).length;i++){
       const author = props.result[i].volumeInfo.authors;
       const title = props.result[i].volumeInfo.title;
-      const description = props.result[i].searchInfo.textSnippet;
+      const description = props.result[i].volumeInfo.description;
       let price=0;
       if (props.result[i].saleInfo.saleability === 'FOR_SALE'){
         price = props.result[i].saleInfo.listPrice.amount
