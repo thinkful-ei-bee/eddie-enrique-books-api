@@ -1,8 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import Header from './Header';
+import SearchForm from './SearchForm';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default class App extends React.Component {
 
-// AIzaSyAZMV5sPphVyPWOXbXkMaM0RNqKZG2tQ7k
+  
+
+  componentDidMount() {} 
+ 
+  render() { 
+      return <div>
+        <Header/>
+        <SearchForm/>
+      </div>;
+  }
+
+  componentDidUpdate() {} 
+
+  componentWillUnmount() {}
+}

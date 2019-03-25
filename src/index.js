@@ -1,9 +1,13 @@
 import React from 'react';
-function App() {
-return (
-<main className='App'>
-{/* content goes here */}
-</main>
- );
-}
-export default App;
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
+
+
+
+
+
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// AIzaSyAZMV5sPphVyPWOXbXkMaM0RNqKZG2tQ7k
