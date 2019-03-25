@@ -6,19 +6,18 @@ export default class FilterSearch extends React.Component {
   
     render() { 
         return (<div>
-            <select onChange={this.props.printTypeFilter}>
-                <option>All</option>    
-                <option>books</option>
-                <option>magazines</option>
-        
+            <select onChange={this.props.printTypeFilter}> 
+                <option value='all'>All</option>     
+                <option value='books'>books</option> 
+                <option value='magazines'>magazines</option> 
             </select> 
-            <select onChange={this.props.bookTypeFilter} >
-                <option>No filter</option>
-                <option value='ebooks'>ebooks</option>
-                <option value='free-ebooks'>free ebooks</option>
-                <option value='paid-ebooks' >paid ebooks</option>
-                <option value='partial'>partial</option>
-                <option value= 'full'>full</option>
+            <select onChange={this.props.bookTypeFilter} > 
+                <option value=''>No filter</option> 
+                <option value='ebooks'>ebooks</option> 
+                <option value='free-ebooks'>free ebooks</option> 
+                <option value='paid-ebooks' >paid ebooks</option> 
+                <option value='partial'>partial</option> 
+                <option value= 'full'>full</option> 
             </select>
              </div>);
     }

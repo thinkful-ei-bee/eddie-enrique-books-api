@@ -1,14 +1,10 @@
 import React from 'react';
 
 export default class SearchForm extends React.Component {
-    
 
     componentDidMount() {
     
     } 
-   
-
-
 
     render() { 
         return <div>
