@@ -6,12 +6,14 @@ export default class FilterSearch extends React.Component {
   
     render() { 
         return (<div>
-            <select onChange={this.props.printTypeFilter}> 
+            <label htmlFor = 'Print Select'>Print Type</label>
+            <select id ='Print Select 'onChange={this.props.printTypeFilter}> 
                 <option value='all'>All</option>     
                 <option value='books'>books</option> 
                 <option value='magazines'>magazines</option> 
             </select> 
-            <select onChange={this.props.bookTypeFilter} > 
+            <label htmlFor = 'Book Type Select'>Book Type</label>
+            <select id='Book Type Select' onChange={this.props.bookTypeFilter} > 
                 <option value=''>No filter</option> 
                 <option value='ebooks'>ebooks</option> 
                 <option value='free-ebooks'>free ebooks</option> 

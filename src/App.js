@@ -21,33 +21,30 @@ export default class App extends React.Component {
         const searchTerm = e.target.text.value;
         url += `q=${searchTerm}`;
 
-        if (this.state.printType !== ''){
-          url += `&printType=${this.state.printType}`
-        }
 
-        if (this.state.bookType !== ''){
-          url += `&filter=${this.state.bookType}`
-        }
 
         console.log('Submiting...',this.state);
         this.setState({...this.state, searchTerm: searchTerm},()=>{
           console.log('Set the search term...',this.state);
-          fetch(url)
-            .then(res => res.json())
-            .then(data => this.setState({...this.state, list: data.items}))
+          this.getData(url);
+          // fetch(url)
+          //   .then(res => res.json())
+          //   .then(data => this.setState({...this.state, list: data.items}))
         })
         
     }
 
     handlePrintTypeFilter=(e)=>{
       const printTypeOption = e.target.value;
-      this.setState({...this.state, printType:printTypeOption},()=> {
-        console.log(this.state);
-        if (this.state.searchTerm === ''){return }
-        fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}&printType=${printTypeOption}`)
-          .then(res => res.json())
-          .then(data => this.setState({...this.state, list:data.items}))
-      });
+      this.setState({...this.state, printType:printTypeOption},
+      //   ()=> {
+      //   console.log(this.state);
+      //   if (this.state.searchTerm === ''){return }
+      //   fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}&printType=${printTypeOption}`)
+      //     .then(res => res.json())
+      //     .then(data => this.setState({...this.state, list:data.items}))
+      // }
+      );
     }
 
     handleBookTypeFilter = (e) => {
@@ -55,23 +52,38 @@ export default class App extends React.Component {
       console.log('Book Filter changing to...',bookTypeOption);
       this.setState({...this.state,  bookType: bookTypeOption},
         // Need to add function to setState because setState is asynchronous 
-        ()=>{
-          if (this.state.searchTerm === ''){return }
-          if (this.state.bookType === ''){
-            console.log('Returning to no Filter...');
-            fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}`)
-              .then(res=>res.json())
-              .then(data => this.setState({...this.state, list:data.items}))
-          }
-          else{
-            fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}&filter=${bookTypeOption}`)
-              .then(res => res.json())
-              .then(data => this.setState({...this.state, list:data.items}))
-          }
-        }
+        // ()=>{
+        //   if (this.state.searchTerm === ''){return }
+        //   if (this.state.bookType === ''){
+        //     console.log('Returning to no Filter...');
+        //     fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}`)
+        //       .then(res=>res.json())
+        //       .then(data => this.setState({...this.state, list:data.items}))
+        //   }
+        //   else{
+        //     fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}&filter=${bookTypeOption}${this.state.printType  && `&printType=${this.state.printTypeOption}`}`)
+        //       .then(res => res.json())
+        //       .then(data => this.setState({...this.state, list:data.items}))
+        //   }
+        // }
       );
     }
+    getData=(x) =>{
+      if (this.state.printType !== ''){
+        x += `&printType=${this.state.printType}`
+      }
 
+      if (this.state.bookType !== ''){
+        x += `&filter=${this.state.bookType}`
+      }
+      fetch(x)
+      .then(res => res.json())
+            .then(data => {
+              data.totalItems === 0 ? alert ('no results'):
+              this.setState({...this.state, list: data.items})});
+
+
+    }
  
  
   render() { 
